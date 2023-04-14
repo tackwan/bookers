@@ -1,0 +1,33 @@
+<h1>Books</h1>
+<div class= "book-wrap">
+  <span>Title</span>
+　<span>Body</span>
+<% @books.each do |each| %>
+　<div classs="book-box">
+    <div class="book-comment">
+      <span class="book-title"><%= book.title %></span>
+      <span class="book-body"><%= book.body %></span>
+    </div>
+  </div>
+<% end %>
+</div>
+
+<h1>New book</h1>
+<% if @book.errors.any? %>
+  <%= @book.errors.conut %>errors
+  
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+  
+  <%= form_with model: @book, url: '/books', method: :post do |f| %>
+    <h4>Title</h4>
+    <%= f.text_field :title %>
+    
+    <h4>body</h4>
+    <%= f.text_area :body %>
+    <%= f.submit 'Create Book' %>
+  <% end %>
